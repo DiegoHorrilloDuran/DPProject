@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 
- * converters.xml
- *
- * Copyright (C) 2018 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
- * http://www.tdg-seville.info/License.html
- -->
+<!-- * converters.xml * * Copyright (C) 2018 Universidad de Sevilla * * The 
+	use of this project is hereby constrained to the conditions of the * TDG 
+	Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
@@ -18,8 +12,34 @@
 	">
 
 	<util:list id="converters">
+
+		<bean class="converters.ApplicationToStringConverter"></bean>
+		<bean class="converters.StringToApplicationConverter"></bean>
+		
+		<bean class="converters.CategoryToStringConverter"></bean>
+		<bean class="converters.StringToCategoryConverter"></bean>
+		
+		<bean class="converters.ComplaintToStringConverter"></bean>
+		<bean class="converters.StringToComplaintConverter"></bean>
+		
+		<bean class="converters.CustomerToStringConverter"></bean>
+		<bean class="converters.StringToCustomerConverter"></bean>
+		
+		<bean class="converters.FixUpTaskToStringConverter"></bean>
+		<bean class="converters.StringToFixUpTaskConverter"></bean>
+		
+		<bean class="converters.MoneyToStringConverter"></bean>
+		<bean class="converters.StringToMoneyConverter"></bean>
+		
+		<bean class="converters.WarrantyToStringConverter"></bean>
+		<bean class="converters.StringToWarrantyConverter"></bean>
+		
+		<bean class="converters.WorkplanToStringConverter"></bean>
+		<bean class="converters.StringToWorkplanConverter"></bean>		
+		
 		<bean class="converters.AdminToStringConverter"/>
 		<bean class="converters.StringToAdminConverter"/>
+
 	</util:list>
-	
+
 </beans>

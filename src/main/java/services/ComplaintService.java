@@ -49,16 +49,11 @@ public class ComplaintService {
 
 		userAccount = LoginService.getPrincipal();
 		//A customer call the method
-		final Authority au = new Authority();
+		Authority au = new Authority();
 		au.setAuthority("CUSTOMER");
 		Assert.isTrue(userAccount.getAuthorities().contains(au));
-		final Complaint c = new Complaint();
+		Complaint c = new Complaint();
 		return c;
-
-	}
-	public Complaint save(final Complaint complaint) {
-		Assert.notNull(complaint);
-		return this.complaintRepository.save(complaint);
 
 	}
 
@@ -69,7 +64,7 @@ public class ComplaintService {
 		return res;
 	}
 
-	public Complaint findOne(final int id) {
+	public Complaint findOne(int id) {
 		Assert.isTrue(id != 0);
 		Complaint res;
 		res = this.complaintRepository.findOne(id);
@@ -77,23 +72,23 @@ public class ComplaintService {
 		return res;
 	}
 
-	public void delete(final Complaint c) {
+	public void delete(Complaint c) {
 		Assert.notNull(c);
-		final Collection<Customer> cus = this.customerService.findAll();
-		for (final Customer cu : cus)
+		Collection<Customer> cus = this.customerService.findAll();
+		for (Customer cu : cus)
 			if (cu.getComplaints().contains(c)) {
 				cu.getComplaints().remove(c);
 				this.customerService.save(cu);
 			}
-		final Collection<HandyWorker> han = this.handyWorkerService.findAll();
-		for (final HandyWorker h : han)
+		Collection<HandyWorker> han = this.handyWorkerService.findAll();
+		for (HandyWorker h : han)
 			if (h.getComplaints().contains(c)) {
 				h.getComplaints().remove(c);
 				this.handyWorkerService.save(h);
 			}
 
-		final Collection<Report> rep = this.reportService.findAllReportsByComplaint(c);
-		for (final Report r : rep)
+		Collection<Report> rep = this.reportService.findAllReportsByComplaint(c);
+		for (Report r : rep)
 			this.reportService.delete(r);
 		this.complaintRepository.delete(c);
 	}
@@ -103,13 +98,13 @@ public class ComplaintService {
 
 		userAccount = LoginService.getPrincipal();
 		//A customer call the method
-		final Authority au = new Authority();
+		Authority au = new Authority();
 		au.setAuthority("CUSTOMER");
 		Assert.isTrue(userAccount.getAuthorities().contains(au));
 
-		final Collection<Complaint> res = new ArrayList<Complaint>();
+		Collection<Complaint> res = new ArrayList<Complaint>();
 
-		for (final Complaint c : this.complaintRepository.findAll())
+		for (Complaint c : this.complaintRepository.findAll())
 			if (c.getFixUpTask().getCustomer().getUserAccount().getId() == userAccount.getId())
 				res.add(c);
 		return res;
@@ -117,8 +112,8 @@ public class ComplaintService {
 	}
 
 	public Collection<Complaint> findAllUnasigned() {
-		final Collection<Complaint> res = new ArrayList<Complaint>();
-		for (final Complaint c : this.complaintRepository.findAllUnasigned()) {
+		Collection<Complaint> res = new ArrayList<Complaint>();
+		for (Complaint c : this.complaintRepository.findAllUnasigned()) {
 			Assert.notNull(c);
 			res.add(c);
 		}
@@ -126,25 +121,25 @@ public class ComplaintService {
 
 	}
 
-	public void assignComplaintReferee(final Complaint c) {
+	public void assignComplaintReferee(Complaint c) {
 
 		UserAccount userAccount;
 
 		userAccount = LoginService.getPrincipal();
-		final Authority au = new Authority();
+		Authority au = new Authority();
 		au.setAuthority("REFEREE");
 
 		Assert.isTrue(userAccount.getAuthorities().contains(au));
 
-		final Referee r = this.refereeService.findOne(userAccount.getId());
+		Referee r = this.refereeService.findOne(userAccount.getId());
 
-		final Collection<Complaint> res = new ArrayList<Complaint>();
+		Collection<Complaint> res = new ArrayList<Complaint>();
 		res.addAll(r.getComplaints());
 		res.add(c);
 
 	}
 
-	public Complaint findByTicker(final String ticker) {
+	public Complaint findByTicker(String ticker) {
 		Assert.notNull(ticker);
 		Complaint res;
 		res = this.complaintRepository.findByTicker(ticker);

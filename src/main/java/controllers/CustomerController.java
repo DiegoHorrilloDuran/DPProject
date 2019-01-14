@@ -1,18 +1,27 @@
+/*
+ * CustomerController.java
+ * 
+ * Copyright (C) 2018 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the
+ * TDG Licence, a copy of which you may download from
+ * http://www.tdg-seville.info/License.html
+ */
+
 package controllers;
 
 import javax.validation.Valid;
 
-import org.springframework.util.Assert;
-import org.springframework.validation.BindingResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CustomerService;
-
 import domain.Customer;
 
 @Controller
@@ -20,7 +29,8 @@ import domain.Customer;
 public class CustomerController extends AbstractController {
 
 	@Autowired
-	private CustomerService customerService;
+	private CustomerService	customerService;
+
 
 	// Constructors -----------------------------------------------------------
 
@@ -48,7 +58,7 @@ public class CustomerController extends AbstractController {
 		ModelAndView result;
 		Customer customer;
 
-		customer = customerService.findOne(customerId);
+		customer = this.customerService.findOne(customerId);
 		Assert.notNull(customer);
 		result = this.createEditModelAndView(customer);
 
@@ -65,10 +75,10 @@ public class CustomerController extends AbstractController {
 			result = this.createEditModelAndView(customer);
 		} else {
 			try {
-				customerService.save(customer);
+				this.customerService.save(customer);
 				result = new ModelAndView("redirect:list.do");
 			} catch (Throwable oops) {
-				result = createEditModelAndView(customer, "customer.commit.error");
+				result = this.createEditModelAndView(customer, "customer.commit.error");
 			}
 		}
 		return result;
@@ -81,7 +91,7 @@ public class CustomerController extends AbstractController {
 		ModelAndView result;
 
 		try {
-			customerService.delete(customer);
+			this.customerService.delete(customer);
 			result = new ModelAndView("redirect:list.do");
 		} catch (Throwable oops) {
 			result = this.createEditModelAndView(customer, "customer.commit.error");
@@ -91,14 +101,14 @@ public class CustomerController extends AbstractController {
 	}
 
 	protected ModelAndView createEditModelAndView(Customer customer) {
-		return createEditModelAndView(customer, null);
+		return this.createEditModelAndView(customer, null);
 	}
 
 	protected ModelAndView createEditModelAndView(Customer customer, String msg) {
 		ModelAndView result;
 		result = new ModelAndView("customer/edit");
-		result.addObject("customer",customer);
-		result.addObject("message",msg);
+		result.addObject("customer", customer);
+		result.addObject("message", msg);
 		return result;
 	}
 

@@ -24,25 +24,39 @@
 			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="administrator/create.do"><spring:message code="master.page.administrator.create" /></a></li>
-					<li><a href="administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>					
-					<li><a href="administrator/send.do"><spring:message code="master.page.administrator.send" /></a></li>
+					<li><a href="administrator/register.do"><spring:message code="master.page.administrator.register" /></a></li>
+					<li><a href="warranties/administrator/list.do"><spring:message code="master.page.administrator.warranties" /></a></li>					
+					<li><a href="categories/administrator/list.do"><spring:message code="master.page.administrator.categories" /></a></li>
+					<li><a href="administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
-		
+		<security:authorize access="hasRole('HANDYWORKER')">
+			<li><a class="fNiv"><spring:message	code="master.page.handyworker" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="fixUpTasks/handyWorker/list.do"><spring:message code="master.page.handyworker.fixUpTask" /></a></li>
+					<li><a href="fixUpTaskFilter/handyworker/edit.do"><spring:message code="master.page.handyworker.filter" /></a></li>					
+					<li><a href="applications/handyworker/list.do"><spring:message code="master.page.handyworker.application" /></a></li>
+					<li><a href="workplans/list.do"><spring:message code="master.page.handyworker.workplan" /></a></li>
+				</ul>
+			</li>
+		</security:authorize>		
 		<security:authorize access="hasRole('CUSTOMER')">
 			<li><a class="fNiv"><spring:message	code="master.page.customer" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="customer/action-1.do"><spring:message code="master.page.customer.action.1" /></a></li>
-					<li><a href="customer/action-2.do"><spring:message code="master.page.customer.action.2" /></a></li>					
+					<li><a href="fixUpTask/customer/list.do"><spring:message code="master.page.customer.fixUpTask" /></a></li>
+					<li><a href="applications/customer/list.do"><spring:message code="master.page.customer.applications"/></a></li>					
 				</ul>
 			</li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+		</security:authorize>
+		<security:authorize access="isAnonymous()">
+			<li><a class="fNiv" href="profile/register.do"><spring:message code="master.page.register" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
@@ -53,9 +67,9 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="profile/action-1.do"><spring:message code="master.page.profile.action.1" /></a></li>
-					<li><a href="profile/action-2.do"><spring:message code="master.page.profile.action.2" /></a></li>
-					<li><a href="profile/action-3.do"><spring:message code="master.page.profile.action.3" /></a></li>					
+					<li><a href="profile/edit.do"><spring:message code="master.page.profile.edit" /></a></li>
+					<li><a href="profile/messages.do"><spring:message code="master.page.profile.message" /></a></li>
+					<li><a href="profile/messageBox.do"><spring:message code="master.page.profile.messageBox" /></a></li>					
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
