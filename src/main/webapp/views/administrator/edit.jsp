@@ -1,13 +1,3 @@
-<%--
- * action-1.jsp
- *
- * Copyright (C) 2018 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
- * http://www.tdg-seville.info/License.html
- --%>
-
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%@taglib prefix="jstl"	uri="http://java.sun.com/jsp/jstl/core"%>
@@ -64,8 +54,8 @@
 	<form:input path="address"/>
 	<form:errors cssClass="error" path="address"/>
 	<br/>
-	<imput type="sumbit" name="save" value="<spring:message code="admin.save" />"/>
-	<imput type="button" name="delete" value="<spring:message code="admin.delete" />"/>
-	//TODO: redireccionar a la pagina principal.
-	<imput type="button" name="cancel" value="<spring:message code="admin.cancel" />"/>
+		<input type="submit" name="save" value="<spring:message code="admin.save" />"/>
+		<input type="submit" name="delete" value="<spring:message code="admin.delete" />"/>
+		<input type="button" name="cancel" onclick="redirect:#" value="<spring:message code="admin.cancel" />"/>
+	
 </form:form>

@@ -61,5 +61,5 @@
 	<form:input path="address"/>
 	<form:errors cssClass="error" path="address"/>
 	<br/>
-	<imput type="sumbit" name="save" value="<spring:message code="admin.save" />"/>
+	<input type="sumbit" name="save" value="<spring:message code="admin.save" />"/>
 </form:form>

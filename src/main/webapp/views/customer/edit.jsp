@@ -64,7 +64,7 @@
 	<form:input path="address"/>
 	<form:errors cssClass="error" path="address"/>
 	<br/>
-	<imput type="sumbit" name="save" value="<spring:message code="customer.save" />"/>
-	<imput type="button" name="delete" value="<spring:message code="customer.delete" />"/>
-	<imput type="button" name="cancel" value="<spring:message code="customer.cancel" />"/>
+	<input type="submit" name="save" value="<spring:message code="customer.save" />"/>
+	<input type="submit" name="delete" value="<spring:message code="customer.delete" />"/>
+	<input type="button" name="cancel" value="<spring:message code="customer.cancel" />"/>
 </form:form>
