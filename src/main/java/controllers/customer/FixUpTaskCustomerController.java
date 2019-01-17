@@ -51,6 +51,18 @@ public class FixUpTaskCustomerController extends AbstractController {
 		return result;
 
 	}
+	
+	public ModelAndView listFinder(Collection<FixUpTask> fut) {
+		ModelAndView result;
+
+		result = new ModelAndView("fixUpTask/list");
+		result.addObject("fixUpTasks", fut);
+		result.addObject("requestURI", "fixUpTask/customer/list.do");
+
+		return result;
+
+	}
+	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 
@@ -133,5 +145,6 @@ public class FixUpTaskCustomerController extends AbstractController {
 		return result;
 
 	}
+	
 
 }

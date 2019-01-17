@@ -51,8 +51,19 @@
 		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
 	
-		<security:intercept-url pattern="/fixUpTask/customer/list.do" access="hasRole('CUSTOMER')" /> 
-	
+		<security:intercept-url pattern="/fixUpTask/customer/list.do" access="hasAnyRole('CUSTOMER','HANDYWORKER','ADMIN')" /> 
+		<security:intercept-url pattern="/fixUpTaskFinder/worker/edit.do" access="hasRole('HANDYWORKER')" /> 
+		
+		<security:intercept-url pattern="/warranty/administrator/list.do" access="hasAnyRole('HANDYWORKER','ADMIN')" /> 
+		<security:intercept-url pattern="/warranty/administrator/show.do" access="hasAnyRole('HANDYWORKER','ADMIN')" /> 
+		<security:intercept-url pattern="/warranty/administrator/edit.do" access="hasRole('ADMIN')" /> 		
+		<security:intercept-url pattern="/warranty/administrator/create.do" access="hasRole('ADMIN')" /> 
+		
+		<security:intercept-url pattern="/workPlan/list.do" access="hasAnyRole('HANDYWORKER, CUSTOMER')" />
+		
+		<security:intercept-url pattern="/phase/list.do" access="hasAnyRole('HANDYWORKER, CUSTOMER')" />
+		<security:intercept-url pattern="/phase/edit.do" access="hasRole('HANDYWORKER')" />
+				
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
 		<security:form-login 

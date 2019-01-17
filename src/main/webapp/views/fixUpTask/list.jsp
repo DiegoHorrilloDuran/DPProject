@@ -33,4 +33,19 @@
 			</a>
 		</div>
 	</security:authorize>
+	<display:column>
+	<security:authorize access="hasRole('ADMIN')">
+	
+	
+		<jstl:if test="${fixUpTask.warranty==null }">
+			<a href="warranty/administrator/create.do?id=${fixUpTask.id}">
+			
+			 <spring:message
+					code="fixUpTask.createWarranty" />
+			
+			</a>
+		</jstl:if>
+		
+	</security:authorize>
+	</display:column>
 </display:table>

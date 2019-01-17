@@ -1,3 +1,12 @@
+/*
+ * AnnouncementToStringConverter.java
+ * 
+ * Copyright (C) 2017 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the
+ * TDG Licence, a copy of which you may download from
+ * http://www.tdg-seville.info/License.html
+ */
 
 package converters;
 
@@ -12,15 +21,15 @@ import domain.Warranty;
 public class WarrantyToStringConverter implements Converter<Warranty, String> {
 
 	@Override
-	public String convert(Warranty warranty) {
-
+	public String convert(final Warranty warranty) {
 		String result;
 
-		if (warranty == null) {
+		if (warranty == null)
 			result = null;
-		} else {
+		else
 			result = String.valueOf(warranty.getId());
-		}
+
 		return result;
 	}
+
 }
