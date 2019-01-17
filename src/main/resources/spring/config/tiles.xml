@@ -28,6 +28,7 @@
 		<value>/views/profile/tiles.xml</value>
 		<value>/views/fixUpTask/tiles.xml</value>
 		<value>/views/handyWorker/tiles.xml</value>
+		<value>/views/userAccount/tiles.xml</value>
 		
 	</util:list>
 
