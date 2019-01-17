@@ -105,8 +105,8 @@
 	</bean>
 	
 	<bean id="userAccount8" class="security.UserAccount">
-		<property name="username" value="handyWorkerUserName1" />
-		<property name="password" value="90cb683f89e4fd2ff7f568fe40ac1d73" />
+		<property name="username" value="handyworker" />
+		<property name="password" value="24da2ce4fb8a46c3d44d2c72305a31a2" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
