@@ -194,7 +194,7 @@
 	            <ref bean="socialProfile1"/>
 	        </list>	
         </property>
-        <property name="userAccount"><ref bean="userAccount4"/> </property>
+        <property name="userAccount"><ref bean="userAccount1"/> </property>
         <property name="messageBoxes">
             <list>
                 <ref bean="inBox1"/>
@@ -609,7 +609,7 @@
 	        	<ref bean="socialProfile4"/>          
 	        </list>
 	    </property>    	
-	    <property name="userAccount"><ref bean="userAccount7"/></property>   	
+	    <property name="userAccount"><ref bean="userAccount2"/></property>   	
 	    <property name="messageBoxes">
 	    	<list>
 	        	<ref bean="inBox4"/>

@@ -1,18 +1,17 @@
+
 package controllers;
 
 import javax.validation.Valid;
 
-import org.springframework.util.Assert;
-import org.springframework.validation.BindingResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AdminService;
-
 import domain.Admin;
 
 @Controller
@@ -20,7 +19,8 @@ import domain.Admin;
 public class AdminController extends AbstractController {
 
 	@Autowired
-	private AdminService adminService;
+	private AdminService	adminService;
+
 
 	// Constructors -----------------------------------------------------------
 
@@ -30,7 +30,7 @@ public class AdminController extends AbstractController {
 
 	// Create ----------------------------------------------------------------
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
 		Admin admin;
@@ -44,11 +44,11 @@ public class AdminController extends AbstractController {
 	// Edit -------------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam int adminId) {
+	public ModelAndView edit() {
 		ModelAndView result;
 		Admin admin;
 
-		admin = adminService.findOne(adminId);
+		admin = this.adminService.findByPrincipal();
 		Assert.notNull(admin);
 		result = this.createEditModelAndView(admin);
 
@@ -58,45 +58,44 @@ public class AdminController extends AbstractController {
 	// Save -------------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid Admin admin, BindingResult binding) {
+	public ModelAndView save(@Valid final Admin admin, final BindingResult binding) {
 		ModelAndView result;
 
-		if (binding.hasErrors()) {
+		if (binding.hasErrors())
 			result = this.createEditModelAndView(admin);
-		} else {
+		else
 			try {
-				adminService.save(admin);
-				result = new ModelAndView("redirect:list.do");
-			} catch (Throwable oops) {
-				result = createEditModelAndView(admin, "admin.commit.error");
+				this.adminService.save(admin);
+				result = new ModelAndView("redirect:edit.do");
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndView(admin, "admin.commit.error");
 			}
-		}
 		return result;
 	}
 
 	// Delete -----------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(Admin admin, BindingResult binding) {
+	public ModelAndView delete(final Admin admin, final BindingResult binding) {
 		ModelAndView result;
 
 		try {
-			adminService.delete(admin);
-			result = new ModelAndView("redirect:list.do");
-		} catch (Throwable oops) {
+			this.adminService.delete(admin);
+			result = new ModelAndView("redirect:#");
+		} catch (final Throwable oops) {
 			result = this.createEditModelAndView(admin, "admin.commit.error");
 		}
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(Admin admin) {
-		return createEditModelAndView(admin, null);
+	protected ModelAndView createEditModelAndView(final Admin admin) {
+		return this.createEditModelAndView(admin, null);
 	}
 
-	protected ModelAndView createEditModelAndView(Admin admin, String msg) {
+	protected ModelAndView createEditModelAndView(final Admin admin, final String msg) {
 		ModelAndView result;
-		result = new ModelAndView("admin/edit");
+		result = new ModelAndView("administrator/edit");
 		result.addObject("admin", admin);
 		result.addObject("message", msg);
 		return result;

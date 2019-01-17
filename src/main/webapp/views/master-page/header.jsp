@@ -14,7 +14,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<a href="#"><img src="images/logo.png" alt="Acme Explorer Co., Inc." /></a>
+	<a href="#"><img src="images/logo.png" alt="Acme Handy Worker Co., Inc." /></a>
 </div>
 
 <div>
@@ -68,7 +68,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="profile/edit.do"><spring:message code="master.page.profile.edit" /></a></li>
-					<li><a href="profile/messages.do"><spring:message code="master.page.profile.message" /></a></li>
+					<li><a href="message/send.do"><spring:message code="master.page.profile.message" /></a></li>
 					<li><a href="profile/messageBox.do"><spring:message code="master.page.profile.messageBox" /></a></li>					
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>

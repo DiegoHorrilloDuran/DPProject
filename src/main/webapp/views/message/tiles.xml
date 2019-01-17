@@ -16,14 +16,16 @@
        
 <tiles-definitions>
 
-	<definition name="profile/edit" extends="master.page">	
-		<put-attribute name="title" value="Profile: edit" />
-		<put-attribute name="body" value="/views/profile/edit.jsp" />
+	<definition name="message/send" extends="master.page">	
+		<put-attribute name="title" value="Send message" />
+		<put-attribute name="body" value="/views/message/send.jsp" />
 	</definition>
 	
-	<definition name="profile/action-2" extends="master.page">	
-		<put-attribute name="title" value="Profile: Action 2" />
-		<put-attribute name="body" value="/views/profile/action-2.jsp" />
+	<definition name="message/list" extends="master.page">	
+		<put-attribute name="title" value="My messages" />
+		<put-attribute name="body" value="/views/fixUpTask/list.jsp" />
 	</definition>
+	
+	
 	
 </tiles-definitions>

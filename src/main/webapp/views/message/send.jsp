@@ -6,21 +6,21 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="administrator.send" /></p>
+<p><spring:message code="msg.send" /></p>
 
-<form:form action="administrator/send.do" modelAttribute="message">
+<form:form action="message/send.do" modelAttribute="message">
 	
 	<form:label path="body">
-		<spring:message code="message.body"/>
+		<spring:message code="msg.body"/>
 	</form:label>
 	<form:input path="body"/>
 	<form:errors cssClass="error" path="body"/>
 	<br/>	
 	<form:label path="recipient">
-		<spring:message code="message.recipient"/>
+		<spring:message code="msg.recipient"/>
 	</form:label>
 	<form:input path="recipient"/>
 	<form:errors cssClass="error" path="recipient"/>
 	<br/>
-	<imput type="sumbit" name="save" value="<spring:message code="message.save" />"/>
+	<input type="submit" name="save" value="<spring:message code="msg.save" />"/>
 </form:form>

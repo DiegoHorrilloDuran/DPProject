@@ -18,7 +18,6 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CustomerService;
@@ -54,11 +53,11 @@ public class CustomerController extends AbstractController {
 	// Edit -------------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam int customerId) {
+	public ModelAndView edit() {
 		ModelAndView result;
 		Customer customer;
 
-		customer = this.customerService.findOne(customerId);
+		customer = this.customerService.findByPrincipal();
 		Assert.notNull(customer);
 		result = this.createEditModelAndView(customer);
 
@@ -68,43 +67,42 @@ public class CustomerController extends AbstractController {
 	// Save -------------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid Customer customer, BindingResult binding) {
+	public ModelAndView save(@Valid final Customer customer, final BindingResult binding) {
 		ModelAndView result;
 
-		if (binding.hasErrors()) {
+		if (binding.hasErrors())
 			result = this.createEditModelAndView(customer);
-		} else {
+		else
 			try {
 				this.customerService.save(customer);
 				result = new ModelAndView("redirect:list.do");
-			} catch (Throwable oops) {
+			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(customer, "customer.commit.error");
 			}
-		}
 		return result;
 	}
 
 	// Delete -----------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(Customer customer, BindingResult binding) {
+	public ModelAndView delete(final Customer customer, final BindingResult binding) {
 		ModelAndView result;
 
 		try {
 			this.customerService.delete(customer);
 			result = new ModelAndView("redirect:list.do");
-		} catch (Throwable oops) {
+		} catch (final Throwable oops) {
 			result = this.createEditModelAndView(customer, "customer.commit.error");
 		}
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(Customer customer) {
+	protected ModelAndView createEditModelAndView(final Customer customer) {
 		return this.createEditModelAndView(customer, null);
 	}
 
-	protected ModelAndView createEditModelAndView(Customer customer, String msg) {
+	protected ModelAndView createEditModelAndView(final Customer customer, final String msg) {
 		ModelAndView result;
 		result = new ModelAndView("customer/edit");
 		result.addObject("customer", customer);
